@@ -6,6 +6,7 @@ buildscript {
         targetSdkVersion = 35
         ndkVersion = "27.1.12297006"
         kotlinVersion = "2.0.21"
+        playServicesLocationVersion = "21.0.1"
     }
     repositories {
         google()
@@ -15,6 +16,20 @@ buildscript {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    }
+}
+
+// Add this block to force dependency versions
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force "com.google.android.gms:play-services-location:21.0.1"
+        }
+    }
+    repositories {
+        google()
+        mavenCentral()
+        // You might need other repositories here depending on your dependencies
     }
 }
 
